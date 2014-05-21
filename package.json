@@ -1,0 +1,17 @@
+{
+  "name": "node-jcdecaux",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Touzet David <dtouzet@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "args-js": "^0.10.4",
+    "q": "^1.0.1",
+    "request": "^2.36.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git@git.eyolas.fr:eyolas/node-jcdecaux.git"
+  }
+}
