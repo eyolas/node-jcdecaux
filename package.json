@@ -1,17 +1,25 @@
 {
   "name": "node-jcdecaux",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "nodejs client for JCDecaux Open Data",
+  "keywords": [
+    "jcdecaux"
+  ],
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/eyolas/node-jcdecaux.git"
+  },
   "author": "Touzet David <dtouzet@gmail.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eyolas/node-jcdecaux/issues"
+  },
+  "homepage": "https://github.com/eyolas/node-jcdecaux",
   "dependencies": {
     "args-js": "^0.10.4",
     "q": "^1.0.1",
     "request": "^2.36.0"
   },
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git@git.eyolas.fr:eyolas/node-jcdecaux.git"
-  }
+  "devDependencies": {}
 }
