@@ -1,8 +1,3 @@
-1.0.1 / 2014-05-27
-==================
-
-* Change package.json for add link to the git
-
 1.1.0 / 2014-05-31
 ==================
 
@@ -14,3 +9,9 @@
 * fix: now all api return json...
 * add few tests
 * fix: getStation change `stationId` string to int
+
+
+1.0.1 / 2014-05-27
+==================
+
+* Change package.json for add link to the git

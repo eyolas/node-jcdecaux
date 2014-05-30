@@ -8,12 +8,12 @@ This project is a client libray for JC Decaux Open Data. In order to use this AP
 $ npm install node-jcdecaux
 ```
 
+## historic:
+see [historic](history.md)
+
 ## Features
 
 All method return promise. So the callback argument is optional.
-
-## historic:
-see [historic](history.md)
 
 ### init(apiKey, contractName, urlApi)
 
@@ -70,7 +70,7 @@ Api.getContracts().then(function(result) {
 
 ```
 
-## Run test
+## Run tests
 
 ```Shell
 APIKEY=yourapikey make
