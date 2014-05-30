@@ -1,7 +1,6 @@
-var request = require('request'),
-    qs = require('querystring'),
-    Q = require('q'),
-    Args = require('args-js');
+var Q = require('q'),
+    Args = require('args-js'),
+    utils = require('./lib/utils');
 
 function JCDecaux() {
 }
@@ -9,16 +8,23 @@ function JCDecaux() {
 /**
  * Init
  */
-JCDecaux.prototype.init = function(apiKey, contractName, urlApi) {
-  var args = Args([
-    {apiKey:       Args.STRING | Args.Required},
-    {contractName: Args.STRING | Args.Optional, _default: null},
-    {urlApi:       Args.STRING | Args.Optional, _default: "https://api.jcdecaux.com/vls/v1/"}
-  ], arguments);
+JCDecaux.prototype.init = function(apiKey, options) {
+  if (!apiKey) throw new Error('ApiKey is mandatory');
 
-  this.apiKey = args.apiKey;
-  this.urlApi = args.urlApi;
-  this.contractName = args.contractName;
+  var defaultOptions = {
+    contractName: null,
+    urlApi: "https://api.jcdecaux.com/vls/v1/",
+    timeout: null
+  };
+
+  options = utils.defaults({}, options || {}, defaultOptions);
+
+  utils.validateOptions(options);
+
+  this.apiKey = apiKey;
+  this.urlApi = options.urlApi;
+  this.contractName = options.contractName;
+  this.timeout = options.timeout;
 };
 
 /**
@@ -28,9 +34,9 @@ JCDecaux.prototype.getContracts  = function(cb) {
   if (!cb) cb = function(){};
 
   var deferred = Q.defer(),
-      url = makeURL.bind(this, 'stations');
+      url = utils.makeURL.bind(this, 'stations');
 
-  call(url(), deferred, cb);
+  utils.call(url(), deferred, cb);
 
   return deferred.promise;
 };
@@ -40,7 +46,7 @@ JCDecaux.prototype.getContracts  = function(cb) {
  */
  JCDecaux.prototype.getStation = function(stationId, contractName, cb) {
   var args = Args([
-    {stationId:    Args.STRING   | Args.Required},
+    {stationId:    Args.INT   | Args.Required},
     {contractName: Args.STRING   | Args.Optional, _default: this.contractName},
     {cb:           Args.FUNCTION | Args.Optional, _default: function(){}}
   ], arguments);
@@ -48,14 +54,14 @@ JCDecaux.prototype.getContracts  = function(cb) {
   contractName = args.contractName;
   cb = args.cb;
 
-  if (isBlank(stationId)) throw new Error("stationId can't be null");
-  if (isBlank(contractName)) throw new Error("contractName can't be null");
+  if (utils.isBlank(stationId)) throw new Error("stationId can't be null");
+  if (utils.isBlank(contractName)) throw new Error("contractName can't be null");
 
   var deferred = Q.defer(),
       params = {contract: contractName},
-      url = makeURL.bind(this, 'stations/' + stationId, params);
+      url = utils.makeURL.bind(this, 'stations/' + stationId, params);
 
-  call(url(), deferred, cb);
+  utils.call(url(), deferred, cb);
 
   return deferred.promise;
 };
@@ -67,9 +73,9 @@ JCDecaux.prototype.getStations = function(cb) {
   if (!cb) cb = function(){};
 
   var deferred = Q.defer(),
-      url = makeURL.bind(this, 'stations');
+      url = utils.makeURL.bind(this, 'stations');
 
-  call(url(), deferred, cb);
+  utils.call(url(), deferred, cb);
 
   return deferred.promise;
 };
@@ -86,44 +92,15 @@ JCDecaux.prototype.getStationsByContract = function(contractName, cb) {
   contractName = args.contractName;
   cb = args.cb;
 
-  if (isBlank(contractName)) throw new Error("contractName can't be null");
+  if (utils.isBlank(contractName)) throw new Error("contractName can't be null");
 
   var deferred = Q.defer(),
       params = {contract: contractName},
-      url = makeURL.bind(this, 'stations', params);
+      url = utils.makeURL.bind(this, 'stations', params);
 
-  call(url(), deferred, cb);
+  utils.call(url(), deferred, cb);
 
   return deferred.promise;
 };
-
-
-
-function isBlank(str) {
-    return (!str || /^\s*$/.test(str));
-}
-
-function makeURL(path, params) {
-  if (!params) params = {};
-  params.apiKey = this.apiKey;
-  var sb = [ this.urlApi, path, '?', qs.stringify(params) ];
-
-  return sb.join('');
-}
-
-function call(url, deferred, cb) {
-  request.get(url, function(err, resp, body) {
-    if (err || (200 != resp.statusCode && 404 != resp.statusCode)) {
-      var error = new Error(body);
-      deferred.reject(error);
-      return cb(error, null);
-    } else {
-      deferred.resolve(body);
-      return cb(null, body);
-    }
-
-  });
-}
-
 
 module.exports = exports = new JCDecaux;

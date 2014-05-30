@@ -12,14 +12,18 @@ $ npm install node-jcdecaux
 
 All method return promise. So the callback argument is optional.
 
+## historic:
+see [historic](history.md)
 
 ### init(apiKey, contractName, urlApi)
 
 The first parameter is required. All others are optional
 
 * `apiKey` - api key (for get a key go http://developer.jcdecaux.com) - Required
-* `contractName` - set the default contract for all method - Optional
-* `urlApi` - url of JCDecaux api (default: `https://api.jcdecaux.com/vls/v1/`) - Optional
+* `options` - options :
+  - `contractName` - set the default contract for all method - Optional
+  - `urlApi` - url of JCDecaux api (default: `https://api.jcdecaux.com/vls/v1/`) - Optional
+  - `timeout` - Integer containing the number of milliseconds to wait for a request to respond before aborting the request
 
 ### getContracts(callback)
 
@@ -35,7 +39,7 @@ Get station information
 * `contractName` - contract name - Optional if set on init
 * `callback` - callback function (`function(err, result)`)- Optional
 
-### getStations(cb) 
+### getStations(cb)
 
 Get the station list
 
@@ -64,6 +68,12 @@ Api.getContracts().then(function(result) {
   console.log(result);
 });
 
+```
+
+## Run test
+
+```Shell
+APIKEY=yourapikey make
 ```
 
 ## Authors
