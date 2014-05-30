@@ -15,7 +15,7 @@ see [historic](history.md)
 
 All method return promise. So the callback argument is optional.
 
-### init(apiKey, contractName, urlApi)
+### init(apiKey, options)
 
 The first parameter is required. All others are optional
 
