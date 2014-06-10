@@ -1,3 +1,5 @@
+[![Dependency Status](https://gemnasium.com/eyolas/node-jcdecaux.svg)](https://gemnasium.com/eyolas/node-jcdecaux)
+[![NPM version](https://badge.fury.io/js/node-jcdecaux.svg)](http://badge.fury.io/js/node-jcdecaux)
 ## nodejs client for JCDecaux Open Data
 
 This project is a client libray for JC Decaux Open Data. In order to use this API, you need to get a key at http://developer.jcdecaux.com.
