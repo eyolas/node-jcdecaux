@@ -24,7 +24,7 @@ describe('getStation', function() {
         API.getStation(2010, 'lyon').then(function(result) {
           result.should.to.be.an('object');
           done();
-        }).fail(function(err) {
+        }).catch(function(err) {
           expect(err).to.be.null;
           done();
         });
@@ -49,7 +49,7 @@ describe('getStation', function() {
         API.getStation(2010).then(function(result) {
           result.should.to.be.an('object');
           done();
-        }).fail(function(err) {
+        }).catch(function(err) {
           expect(err).to.be.null;
           done();
         });
@@ -105,7 +105,7 @@ describe('getStation', function() {
         API.getStation(2010, 'lyon').then(function(result) {
           expect(result).to.be.null;
           done();
-        }).fail(function(err) {
+        }).catch(function(err) {
           err.should.to.be.an('object');
           done();
         });
@@ -129,7 +129,7 @@ describe('getStation', function() {
         API.getStation(2010, 'lyon').then(function(result) {
           expect(result).to.be.null;
           done();
-        }).fail(function(err) {
+        }).catch(function(err) {
           err.should.to.be.an('object');
           done();
         });

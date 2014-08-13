@@ -18,7 +18,7 @@
   "homepage": "https://github.com/eyolas/node-jcdecaux",
   "dependencies": {
     "args-js": "~0.10.5",
-    "q": "~1.0.1",
+    "q": "~2.0.2",
     "request": "~2.40.0",
     "valid-url": "~1.0.9"
   },

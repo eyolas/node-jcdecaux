@@ -28,7 +28,7 @@ describe('getStationsByContract', function() {
             .with.deep.property('[2]')
               .that.is.an('object');
           done();
-        }).fail(function(err) {
+        }).catch(function(err) {
           expect(err).to.be.null;
           done();
         });
@@ -57,7 +57,7 @@ describe('getStationsByContract', function() {
             .with.deep.property('[2]')
               .that.is.an('object');
           done();
-        }).fail(function(err) {
+        }).catch(function(err) {
           expect(err).to.be.null;
           done();
         });
@@ -96,7 +96,7 @@ describe('getStationsByContract', function() {
         API.getStationsByContract().then(function(result) {
           expect(result).to.be.null;
           done();
-        }).fail(function(err) {
+        }).catch(function(err) {
           err.should.to.be.an('object');
           done();
         });
@@ -120,7 +120,7 @@ describe('getStationsByContract', function() {
         API.getStationsByContract('lyon').then(function(result) {
           expect(result).to.be.null;
           done();
-        }).fail(function(err) {
+        }).catch(function(err) {
           err.should.to.be.an('object');
           done();
         });
