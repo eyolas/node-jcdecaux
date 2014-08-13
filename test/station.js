@@ -66,7 +66,7 @@ describe('getStation', function() {
 
       it("#getStation('lyon')", function(){
         var fn = function() {API.getStation('lyon');};
-        expect(fn).to.throw(Error, 'Argument lyon (stationId) should be type Int, but it was type number with value 0.');
+        expect(fn).to.throw(Error, 'Argument 0 (stationId) should be type Int, but it was type string with value lyon.');
       });
 
       it("#getStation(2010)", function(){
@@ -83,7 +83,7 @@ describe('getStation', function() {
 
       it("#getStation(cb)", function(){
         var fn = function() {API.getStation('lyon');};
-        expect(fn).to.throw(Error, 'Argument lyon (stationId) should be type Int, but it was type number with value 0.');
+        expect(fn).to.throw(Error, 'Argument 0 (stationId) should be type Int, but it was type string with value lyon.');
       });
     });
 
