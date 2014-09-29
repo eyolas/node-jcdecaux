@@ -1,3 +1,19 @@
+1.1.3 / 2014-09-23
+==================
+
+* update "request"
+
+
+1.1.2 / 2014-08-13
+==================
+
+* update "args-js"
+* update "q"
+* update "request"
+* update "valid-url"
+* update test
+
+
 1.1.1 / 2014-05-31
 ==================
 
