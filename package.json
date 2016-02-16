@@ -5,6 +5,9 @@
   "keywords": [
     "jcdecaux"
   ],
+  "scripts": {
+    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha --harmony --timeout 6s -R spec test/"
+  },
   "main": "index.js",
   "repository": {
     "type": "git",

@@ -1,3 +1,4 @@
+[![Build Status][build-image]][build-url]
 [![NPM version][npm-image]][npm-url]
 [![Dependency Status][gemnasium-image]][gemnasium-url]
 
@@ -76,7 +77,7 @@ Api.getContracts().then(function(result) {
 ## Run tests
 
 ```Shell
-APIKEY=yourapikey make
+APIKEY=yourapikey npm test
 ```
 
 ## Authors
@@ -87,6 +88,8 @@ APIKEY=yourapikey make
 
   MIT
 
+[build-image]: https://travis-ci.org/eyolas/node-jcdecaux.svg?branch=master
+[build-url]: https://travis-ci.org/eyolas/node-jcdecaux
 [npm-image]: https://img.shields.io/npm/v/node-jcdecaux.svg?style=flat-square
 [npm-url]: https://github.com/eyolas/node-jcdecaux
 [gemnasium-image]: http://img.shields.io/gemnasium/eyolas/node-jcdecaux.svg?style=flat-square
