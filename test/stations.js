@@ -1,27 +1,18 @@
 var chai = require("chai"),
     expect = chai.expect,
     should = chai.should(),
-    API = require('../'),
+    API,
+    JCDecaux = require('../').default,
     APIKEY = process.env.APIKEY;
 
 describe('getStations', function() {
   describe('goodConfig', function() {
     before(function(done) {
-      API.init(APIKEY);
+      API = new JCDecaux(APIKEY);
       done();
     });
 
-    it('#getStations(cb)', function(done){
-      API.getStations(function(err, result) {
-        expect(err).to.be.null;
-        result.should.to.be.an('array')
-          .with.deep.property('[2]')
-            .that.is.an('object');
-        done();
-      });
-    });
-
-    it('promise#getStations()', function(done){
+    it('#getStations()', function(done){
       API.getStations().then(function(result) {
          result.should.to.be.an('array')
           .with.deep.property('[2]')
@@ -38,20 +29,11 @@ describe('getStations', function() {
 
     describe('withBadUrlApi', function(){
       before(function(done) {
-        API.init(APIKEY, {urlApi: 'http://google.com'});
+        API = new JCDecaux(APIKEY, {urlApi: 'http://google.com'});
         done();
       });
 
-
-      it('#getStations(cb)', function(done){
-        API.getStations(function(err, result) {
-          err.should.to.be.an('object');
-          expect(result).to.be.null;
-          done();
-        });
-      });
-
-      it('promise#getContracts()', function(done){
+      it('#getContracts()', function(done){
         API.getStations().then(function(result) {
           expect(result).to.be.null;
           done();
@@ -62,23 +44,13 @@ describe('getStations', function() {
       });
     });
 
-
     describe('withBadApiKey', function(){
       before(function(done) {
-        API.init("LOL");
+        API = new JCDecaux('BadApiKey');
         done();
       });
 
-
-      it('#getStations(cb)', function(done){
-        API.getStations(function(err, result) {
-          err.should.to.be.an('object');
-          expect(result).to.be.null;
-          done();
-        });
-      });
-
-      it('promise#getStations()', function(done){
+      it('#getStations()', function(done){
         API.getStations().then(function(result) {
           expect(result).to.be.null;
           done();

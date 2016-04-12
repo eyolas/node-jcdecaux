@@ -1,28 +1,19 @@
 var chai = require("chai"),
     expect = chai.expect,
     should = chai.should(),
-    API = require('../'),
+    API,
+    JCDecaux = require('../').default,
     APIKEY = process.env.APIKEY;
 
 describe('getStationsByContract', function() {
   describe('goodconfig', function() {
     describe('withoutSetContract', function() {
       before(function(done) {
-        API.init(APIKEY);
+        API = new JCDecaux(APIKEY);
         done();
       });
 
-      it("#getStationsByContract('lyon', cb)", function(done){
-        API.getStationsByContract('lyon', function(err, result) {
-          expect(err).to.be.null;
-          result.should.to.be.an('array')
-            .with.deep.property('[2]')
-              .that.is.an('object');
-          done();
-        });
-      });
-
-      it("promise#getStationsByContract('lyon')", function(done){
+      it("#getStationsByContract('lyon')", function(done){
         API.getStationsByContract('lyon').then(function(result) {
           result.should.to.be.an('array')
             .with.deep.property('[2]')
@@ -37,18 +28,8 @@ describe('getStationsByContract', function() {
 
     describe('withSetContract:lyon', function() {
       before(function(done) {
-        API.init(APIKEY, {contractName: 'lyon'});
+        API = new JCDecaux(APIKEY, {contractName: 'lyon'});
         done();
-      });
-
-      it('#getStationsByContract(cb)', function(done){
-        API.getStationsByContract(function(err, result) {
-          expect(err).to.be.null;
-          result.should.to.be.an('array')
-            .with.deep.property('[2]')
-              .that.is.an('object');
-          done();
-        });
       });
 
       it('promise#getStationsByContract()', function(done){
@@ -68,11 +49,11 @@ describe('getStationsByContract', function() {
   describe('testErrors', function() {
     describe('withoutSetContract', function() {
       before(function(done) {
-        API.init(APIKEY);
+        API = new JCDecaux(APIKEY);
         done();
       });
 
-      it("#getStationsByContract(cb)", function(){
+      it("#getStationsByContract()", function(){
         var fn = function() {API.getStationsByContract();};
         expect(fn).to.throw(Error, 'contractName can\'t be null');
       });
@@ -80,19 +61,11 @@ describe('getStationsByContract', function() {
 
     describe('withBadUrlApi', function(){
       before(function(done) {
-      API.init(APIKEY, {contractName: 'lyon', urlApi: 'http://google.com'});
+        API = new JCDecaux(APIKEY, {contractName: 'lyon', urlApi: 'http://google.com'});
         done();
       });
 
-      it("#getStationsByContract(cb)", function(done){
-        API.getStationsByContract(function(err, result) {
-          err.should.to.be.an('object');
-          expect(result).to.be.null;
-          done();
-        });
-      });
-
-      it("promise#getStationsByContract()", function(done){
+      it("#getStationsByContract()", function(done){
         API.getStationsByContract().then(function(result) {
           expect(result).to.be.null;
           done();
@@ -105,18 +78,11 @@ describe('getStationsByContract', function() {
 
     describe('withBadApiKey', function(){
       before(function(done) {
-        API.init("LOL");
+        API = new JCDecaux('BadApiKey');
         done();
       });
-      it("#getStationsByContract('lyon', cb)", function(done){
-        API.getStationsByContract('lyon', function(err, result) {
-          err.should.to.be.an('object');
-          expect(result).to.be.null;
-          done();
-        });
-      });
 
-      it("promise#getStationsByContract('lyon')", function(done){
+      it("#getStationsByContract('lyon')", function(done){
         API.getStationsByContract('lyon').then(function(result) {
           expect(result).to.be.null;
           done();

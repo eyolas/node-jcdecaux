@@ -1,14 +1,23 @@
 {
   "name": "node-jcdecaux",
-  "version": "1.1.4",
+  "version": "2.0.0",
   "description": "nodejs client for JCDecaux Open Data",
   "keywords": [
     "jcdecaux"
   ],
+  "files": [
+    "*.md",
+    "lib"
+  ],
   "scripts": {
+    "rm": "rimraf ./lib",
+    "build": "npm run rm && npm run build:cjs && npm run --force build:es2015 && npm run build:amd",
+    "build:cjs": "tsc --outDir ./lib/commonjs",
+    "build:es2015": "tsc --target es2015 --outDir ./lib/es2015",
+    "build:amd": "tsc --module amd --outFile ./lib/amd/node-jcdecaux.js",
     "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha --harmony --timeout 6s -R spec test/"
   },
-  "main": "index.js",
+  "main": "./lib/commonjs/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/eyolas/node-jcdecaux.git"
@@ -20,14 +29,12 @@
   },
   "homepage": "https://github.com/eyolas/node-jcdecaux",
   "dependencies": {
-    "args-js": "~0.10.5",
-    "q": "~2.0.2",
-    "request": "^2.45.0",
-    "valid-url": "~1.0.9"
+    "superagent": "^1.7.2"
   },
   "devDependencies": {
     "chai": "^1.9.1",
     "chai-as-promised": "^4.1.1",
-    "mocha": "^1.21.4"
+    "mocha": "^1.21.4",
+    "rimraf": "^2.5.2"
   }
 }
