@@ -15,7 +15,7 @@
     "build:cjs": "tsc --outDir ./lib/commonjs",
     "build:es2015": "tsc --target es2015 --outDir ./lib/es2015",
     "build:amd": "tsc --module amd --outFile ./lib/amd/node-jcdecaux.js",
-    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha --harmony --timeout 6s -R spec test/"
+    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha -R spec test/"
   },
   "main": "./lib/commonjs/index.js",
   "repository": {
@@ -32,9 +32,9 @@
     "superagent": "^1.7.2"
   },
   "devDependencies": {
-    "chai": "^1.9.1",
-    "chai-as-promised": "^4.1.1",
-    "mocha": "^1.21.4",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "mocha": "^2.4.5",
     "rimraf": "^2.5.2"
   }
 }

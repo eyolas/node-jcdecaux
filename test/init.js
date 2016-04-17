@@ -1,9 +1,10 @@
 var expect = require('chai').expect,
     should = require('chai').should(),
     API,
-    JCDecaux = require('../').default,
+    JCDecaux = require('../').JCDecaux,
     APIKEY = process.env.APIKEY,
-    defaultUrl = "https://api.jcdecaux.com/vls/v1/";
+    DEFAULT_TIMEOUT = require('../').DEFAULT_TIMEOUT,
+    URL_API = require('../').URL_API;
 
 describe('init', function(){
   describe('goodConfig', function() {
@@ -19,9 +20,11 @@ describe('init', function(){
 
       API.should.to.have.property('urlApi')
         .that.is.an('string')
-        .that.deep.equals(defaultUrl);
+        .that.deep.equals(URL_API);
 
-      API.should.to.have.deep.property('timeout', null);
+        API.should.to.have.deep.property('timeout')
+          .that.is.an('number')
+          .that.deep.equals(DEFAULT_TIMEOUT);
     });
 
     it('#init(apikey, {contractName: "lyon"})', function() {
@@ -41,9 +44,11 @@ describe('init', function(){
 
       API.should.to.have.property('urlApi')
         .that.is.an('string')
-        .that.deep.equals(defaultUrl);
+        .that.deep.equals(URL_API);
 
-      API.should.to.have.deep.property('timeout', null);
+      API.should.to.have.deep.property('timeout')
+        .that.is.an('number')
+        .that.deep.equals(DEFAULT_TIMEOUT);
     });
 
     it('#init(apikey, {contractName: "lyon", urlApi: "http://google.com/"})', function() {
@@ -65,7 +70,9 @@ describe('init', function(){
         .that.is.an('string')
         .that.deep.equals("http://google.com/");
 
-      API.should.to.have.deep.property('timeout', null);
+      API.should.to.have.deep.property('timeout')
+        .that.is.an('number')
+        .that.deep.equals(DEFAULT_TIMEOUT);
     });
 
     it('#init(apikey, {contractName: "lyon", urlApi: "http://google.com/", timeout: 5000})', function() {

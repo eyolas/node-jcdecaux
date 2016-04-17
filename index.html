@@ -8,8 +8,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-<!-- <script src="bundle.js"></script> -->
-        <script src="lib/browser/JCDecaux.js"></script>
+<script src="https://npmcdn.com/@reactivex/rxjs@5.0.0-beta.5/dist/global/Rx.umd.js"></script>
+        <!-- <script src="lib/browser/JCDecaux.js"></script> -->
+    <script>
+      function subscribe(observer) {
+        var i = 1;
+        var intervalID = setInterval(() => {
+          observer.next(i++);
+        }, 1000);
 
+        return function unsubscribe() {
+          clearInterval(intervalID);
+        };
+      }
+
+      // var unsubscribe = subscribe({next: (x) => console.log('1 subscrib: ' + x)});
+      // var unsubscribe2 = subscribe({next: (x) => console.log('2 subscrib: ' + x)});
+      // setTimeout(()=> {
+      //   unsubscribe();
+      // }, 2000);
+    </script>
     </body>
 </html>

@@ -2,41 +2,35 @@ var chai = require("chai"),
     expect = chai.expect,
     should = chai.should(),
     API,
-    JCDecaux = require('../').default,
+    JCDecaux = require('../').JCDecaux,
     APIKEY = process.env.APIKEY;
 
 describe('getStation', function() {
   describe('goodconfig', function() {
     describe('withoutSetContract', function() {
-      before(function(done) {
+      before(function() {
         API = new JCDecaux(APIKEY);
-        done();
       });
 
-      it("#getStation(2010, 'lyon')", function(done){
-        API.getStation(2010, 'lyon').then(function(result) {
+      it("#getStation(2010, 'lyon')", function(){
+        return API.getStation(2010, 'lyon').then(function(result) {
           result.should.to.be.an('object');
-          done();
         }).catch(function(err) {
           expect(err).to.be.null;
-          done();
         });
       });
     });
 
     describe('withSetContract:lyon', function() {
-      before(function(done) {
+      before(function() {
         API = new JCDecaux(APIKEY, {contractName: 'lyon'});
-        done();
       });
 
-      it('#getStation(2010)', function(done){
-        API.getStation(2010).then(function(result) {
+      it('#getStation(2010)', function(){
+        return API.getStation(2010).then(function(result) {
           result.should.to.be.an('object');
-          done();
         }).catch(function(err) {
           expect(err).to.be.null;
-          done();
         });
       });
     });
@@ -44,9 +38,8 @@ describe('getStation', function() {
 
   describe('testErrors', function() {
     describe('withoutSetContract', function() {
-      before(function(done) {
+      before(function() {
         API = new JCDecaux(APIKEY);
-        done();
       });
 
       it("#getStation('lyon')", function(){
@@ -61,42 +54,35 @@ describe('getStation', function() {
     });
 
     describe('withSetContract:lyon', function() {
-      before(function(done) {
+      before(function() {
         API = new JCDecaux(APIKEY, {contractName: 'lyon'});
-        done();
       });
     });
 
     describe('withBadUrlApi', function(){
-      before(function(done) {
+      before(function() {
         API = new JCDecaux(APIKEY, {contractName: 'lyon', urlApi: 'http://google.com'});
-        done();
       });
 
-      it("#getStation(2010, 'lyon')", function(done){
-        API.getStation(2010, 'lyon').then(function(result) {
+      it("#getStation(2010, 'lyon')", function(){
+        return API.getStation(2010, 'lyon').then(function(result) {
           expect(result).to.be.null;
-          done();
         }).catch(function(err) {
-          err.should.to.be.an('object');
-          done();
+          err.should.to.be.an('error');
         });
       });
     });
 
     describe('withBadApiKey', function(){
-      before(function(done) {
+      before(function() {
         API = new JCDecaux('BadApiKey');
-        done();
       });
 
-      it("#getStation(2010, 'lyon')", function(done){
-        API.getStation(2010, 'lyon').then(function(result) {
+      it("#getStation(2010, 'lyon')", function(){
+        return API.getStation(2010, 'lyon').then(function(result) {
           expect(result).to.be.null;
-          done();
         }).catch(function(err) {
-          err.should.to.be.an('object');
-          done();
+          err.should.to.be.an('error');
         });
       });
     });

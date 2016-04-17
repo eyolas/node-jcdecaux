@@ -2,25 +2,22 @@ var chai = require("chai"),
     expect = chai.expect,
     should = chai.should(),
     API,
-    JCDecaux = require('../').default,
+    JCDecaux = require('../').JCDecaux,
     APIKEY = process.env.APIKEY;
 
 describe('getStations', function() {
   describe('goodConfig', function() {
-    before(function(done) {
+    before(function() {
       API = new JCDecaux(APIKEY);
-      done();
     });
 
-    it('#getStations()', function(done){
-      API.getStations().then(function(result) {
+    it('#getStations()', function(){
+      return API.getStations().then(function(result) {
          result.should.to.be.an('array')
           .with.deep.property('[2]')
             .that.is.an('object');
-        done();
       }).catch(function(err) {
         expect(err).to.be.null;
-        done();
       });
     });
   });
@@ -28,35 +25,29 @@ describe('getStations', function() {
   describe('testErrors', function(){
 
     describe('withBadUrlApi', function(){
-      before(function(done) {
+      before(function() {
         API = new JCDecaux(APIKEY, {urlApi: 'http://google.com'});
-        done();
       });
 
-      it('#getContracts()', function(done){
-        API.getStations().then(function(result) {
+      it('#getContracts()', function(){
+        return API.getStations().then(function(result) {
           expect(result).to.be.null;
-          done();
         }).catch(function(err) {
-          err.should.to.be.an('object');
-          done();
+          err.should.to.be.an('error');
         })
       });
     });
 
     describe('withBadApiKey', function(){
-      before(function(done) {
+      before(function() {
         API = new JCDecaux('BadApiKey');
-        done();
       });
 
-      it('#getStations()', function(done){
-        API.getStations().then(function(result) {
+      it('#getStations()', function(){
+        return API.getStations().then(function(result) {
           expect(result).to.be.null;
-          done();
         }).catch(function(err) {
-          err.should.to.be.an('object');
-          done();
+          err.should.to.be.an('error');
         })
       });
     });
