@@ -6,9 +6,24 @@ export const URL_API = 'https://api.jcdecaux.com/vls/v1/';
 export const DEFAULT_TIMEOUT = 3000;
 
 export class JCDecaux {
+  /**
+   * Url of JCDecaux api
+   * @type {string}
+   */
   public urlApi: string;
+
+  /**
+   *  The default contract for all method
+   * @type {string}
+   */
   public contractName: string;
+
+  /**
+   * The number of milliseconds to wait for a request to respond before aborting the request
+   * @type {number}
+   */
   public timeout: number;
+
 
   constructor(
     public apiKey: string,

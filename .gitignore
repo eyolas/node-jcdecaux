@@ -116,6 +116,5 @@ nb-configuration.xml
 # project
 logs
 cache
-lib
 index.html
 t.js

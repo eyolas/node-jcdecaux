@@ -1,9 +1,7 @@
 language: node_js
 node_js:
-- '4.1'
-- '4.0'
-- '0.12'
-- '0.11'
+- '5'
+- '4'
 env:
   global:
     secure: LMp2aaN3ARHR/FvFzyAMYR/8H2kIPXb5SV/jLgky0AJCg604QNbGImpCLtMf0kUPQD1rNrQ69LoVt872cy/cBd8XpVmNPy9dAMRC/8tIgZyYZH/5u7bYLbsdHqHpwwCtbzgzG2p/JCA2+8Fz/cMZ5aiXY8zb4vzMQu72Zxo+xwA=

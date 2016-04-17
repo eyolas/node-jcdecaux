@@ -10,11 +10,12 @@
     "lib"
   ],
   "scripts": {
-    "rm": "rimraf ./lib",
-    "build": "npm run rm && npm run build:cjs && npm run --force build:es2015 && npm run build:amd",
+    "clean": "rimraf ./lib  && mkdir  -p lib/browser",
+    "build": "npm run clean && npm run build:cjs && npm run --force build:es2015 && npm run build:amd && npm run build:browser",
     "build:cjs": "tsc --outDir ./lib/commonjs",
     "build:es2015": "tsc --target es2015 --outDir ./lib/es2015",
     "build:amd": "tsc --module amd --outFile ./lib/amd/node-jcdecaux.js",
+    "build:browser": "browserify lib/commonjs/index.js --standalone jcdecaux > lib/browser/jcdecaux.js",
     "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha -R spec test/"
   },
   "main": "./lib/commonjs/index.js",
