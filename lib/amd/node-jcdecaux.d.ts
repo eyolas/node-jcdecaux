@@ -1,15 +1,3 @@
-declare module "lang" {
-    /**
-     * Checks if value is classified as a String primitive or object.
-     * @param  {any}     obj [description]
-     * @return {boolean}     [description]
-     */
-    export function isString(obj: any): boolean;
-    export function isTringBlank(obj: any): boolean;
-    export function isBlank(obj: any): boolean;
-    export function isNumber(obj: any): boolean;
-    export function isValidUrl(obj: any): boolean;
-}
 declare module "interfaces" {
     export interface JCDecauxParams {
         contractName?: string;
@@ -45,7 +33,19 @@ declare module "interfaces" {
         last_update: number;
     }
 }
-declare module "index" {
+declare module "lang" {
+    /**
+     * Checks if value is classified as a String primitive or object.
+     * @param  {any}     obj [description]
+     * @return {boolean}     [description]
+     */
+    export function isString(obj: any): boolean;
+    export function isTringBlank(obj: any): boolean;
+    export function isBlank(obj: any): boolean;
+    export function isNumber(obj: any): boolean;
+    export function isValidUrl(obj: any): boolean;
+}
+declare module "jcDecaux" {
     import { Contract, Station, JCDecauxParams } from "interfaces";
     export const URL_API: string;
     export const DEFAULT_TIMEOUT: number;
@@ -73,4 +73,8 @@ declare module "index" {
         getStationsByContract(contractName?: string): Promise<Array<Station>>;
         private _request(path?, params?);
     }
+}
+declare module "index" {
+    export * from "interfaces";
+    export * from "jcDecaux";
 }

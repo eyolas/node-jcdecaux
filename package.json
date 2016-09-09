@@ -1,6 +1,6 @@
 {
   "name": "node-jcdecaux",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "nodejs client for JCDecaux Open Data",
   "keywords": [
     "jcdecaux"
@@ -19,6 +19,7 @@
     "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha -R spec test/"
   },
   "main": "./lib/commonjs/index.js",
+  "typings": "./lib/commonjs/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git://github.com/eyolas/node-jcdecaux.git"
@@ -33,6 +34,7 @@
     "superagent": "^1.7.2"
   },
   "devDependencies": {
+    "browserify": "^13.1.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
     "mocha": "^2.4.5",
