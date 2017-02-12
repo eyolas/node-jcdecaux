@@ -14,7 +14,6 @@ export class JCDecaux {
 
   private _request: Request;
 
-
   constructor(
     public apiKey: string,
     { contractName = null, urlApi = URL_API, timeout = DEFAULT_TIMEOUT }: JCDecauxParams = {}

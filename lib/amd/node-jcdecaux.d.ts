@@ -78,3 +78,13 @@ declare module "index" {
     export * from "interfaces";
     export * from "jcDecaux";
 }
+declare module "request.browser" {
+    import { RequestParams } from "interfaces";
+    export class Request {
+        private apiKey;
+        private urlApi;
+        private timeout;
+        constructor(apiKey: string, urlApi: string, timeout: number);
+        call<T>(path?: string, params?: RequestParams): Promise<T>;
+    }
+}
