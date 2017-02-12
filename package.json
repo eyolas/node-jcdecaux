@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "clean": "rimraf ./lib  && mkdir  -p lib/browser",
-    "build": "npm run clean && npm run build:cjs && npm run --force build:es2015 && npm run build:amd && npm run build:browser",
+    "build": "npm run clean && npm run build:cjs && npm run build:es2015 && npm run build:amd && npm run build:browser",
     "build:cjs": "tsc --outDir ./lib/commonjs",
     "build:es2015": "tsc --target es2015 --outDir ./lib/es2015",
     "build:amd": "tsc --module amd --outFile ./lib/amd/node-jcdecaux.js",
@@ -31,9 +31,10 @@
   },
   "homepage": "https://github.com/eyolas/node-jcdecaux",
   "dependencies": {
-    "superagent": "^1.7.2"
+    "request": "^2.79.0"
   },
   "devDependencies": {
+    "@types/request": "^0.0.39",
     "browserify": "^13.1.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",

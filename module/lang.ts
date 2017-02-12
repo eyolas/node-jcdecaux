@@ -27,7 +27,7 @@ export function isBlank(obj: any): boolean {
 }
 
 
-export function isNumber(obj): boolean {
+export function isNumber(obj: any): boolean {
   return typeof obj === 'number';
 }
 

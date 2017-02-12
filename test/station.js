@@ -73,6 +73,20 @@ describe('getStation', function() {
       });
     });
 
+    describe('timeout', function(){
+      before(function() {
+        API = new JCDecaux(APIKEY, {contractName: 'lyon', urlApi: "http://blackhole.webpagetest.org", timeout: 1000 });
+      });
+
+      it("#getStation(2010, 'lyon')", function(){
+        return API.getStation(2010, 'lyon').then(function(result) {
+          expect(result).to.be.null;
+        }).catch(function(err) {
+          err.should.to.be.an('error');
+        });
+      });
+    });
+
     describe('withBadApiKey', function(){
       before(function() {
         API = new JCDecaux('BadApiKey');

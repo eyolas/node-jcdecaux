@@ -3,19 +3,30 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "sourceMap": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": false,
-    "noImplicitAny": false,
-    "declaration": true
+    "allowSyntheticDefaultImports": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "noEmitHelpers": true,
+    "noImplicitAny": true,
+    "strictNullChecks": false,
+    "declaration": true,
+    "lib": [
+      "es2015"
+    ],
+    "types": [
+      "request"
+    ]
   },
   "exclude": [
     "node_modules",
-    "typings/main",
-    "typings/main.d.ts"
+    "lib"
   ],
   "compileOnSave": false,
   "buildOnSave": false,
-  "atom": { "rewriteTsconfig": false }
+  "atom": {
+    "rewriteTsconfig": false
+  }
 }

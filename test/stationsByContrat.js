@@ -66,6 +66,20 @@ describe('getStationsByContract', function() {
       });
     });
 
+    describe('timeout', function(){
+      before(function() {
+        API = new JCDecaux(APIKEY, {contractName: 'lyon', urlApi: "http://blackhole.webpagetest.org", timeout: 1000});
+      });
+
+      it("#getStationsByContract()", function(){
+        API.getStationsByContract().then(function(result) {
+          expect(result).to.be.null;
+        }).catch(function(err) {
+          err.should.to.be.an('error');
+        });
+      });
+    });
+
     describe('withBadApiKey', function(){
       before(function() {
         API = new JCDecaux('BadApiKey');

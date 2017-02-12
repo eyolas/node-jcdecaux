@@ -1,27 +1,17 @@
 import { Contract, Station, JCDecauxParams } from './interfaces';
-export declare const URL_API: string;
-export declare const DEFAULT_TIMEOUT: number;
+export declare const URL_API = "https://api.jcdecaux.com/vls/v1/";
+export declare const DEFAULT_TIMEOUT = 3000;
 export declare class JCDecaux {
     apiKey: string;
-    /**
-     * Url of JCDecaux api
-     * @type {string}
-     */
-    urlApi: string;
     /**
      *  The default contract for all method
      * @type {string}
      */
     contractName: string;
-    /**
-     * The number of milliseconds to wait for a request to respond before aborting the request
-     * @type {number}
-     */
-    timeout: number;
+    private _request;
     constructor(apiKey: string, {contractName, urlApi, timeout}?: JCDecauxParams);
-    getContracts(): Promise<Array<Contract>>;
+    getContracts(): Promise<Contract[]>;
     getStation(stationId: number, contractName?: string): Promise<Station>;
-    getStations(): Promise<Array<Station>>;
-    getStationsByContract(contractName?: string): Promise<Array<Station>>;
-    private _request(path?, params?);
+    getStations(): Promise<Station[]>;
+    getStationsByContract(contractName?: string): Promise<Station[]>;
 }

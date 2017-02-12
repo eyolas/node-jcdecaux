@@ -38,6 +38,20 @@ describe('getStations', function() {
       });
     });
 
+    describe('timeout', function(){
+      before(function() {
+        API = new JCDecaux(APIKEY, {urlApi: "http://blackhole.webpagetest.org", timeout: 1000});
+      });
+
+      it('#getContracts()', function(){
+        return API.getStations().then(function(result) {
+          expect(result).to.be.null;
+        }).catch(function(err) {
+          err.should.to.be.an('error');
+        })
+      });
+    });
+
     describe('withBadApiKey', function(){
       before(function() {
         API = new JCDecaux('BadApiKey');

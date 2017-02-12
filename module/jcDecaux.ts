@@ -1,28 +1,18 @@
-import * as superagent from 'superagent';
+import { Request } from './request';
 import * as lang from './lang';
-import {Contract, Station, JCDecauxParams, RequestParams} from './interfaces';
+import { Contract, Station, JCDecauxParams } from './interfaces';
 
 export const URL_API = 'https://api.jcdecaux.com/vls/v1/';
 export const DEFAULT_TIMEOUT = 3000;
 
 export class JCDecaux {
   /**
-   * Url of JCDecaux api
-   * @type {string}
-   */
-  public urlApi: string;
-
-  /**
    *  The default contract for all method
    * @type {string}
    */
   public contractName: string;
 
-  /**
-   * The number of milliseconds to wait for a request to respond before aborting the request
-   * @type {number}
-   */
-  public timeout: number;
+  private _request: Request;
 
 
   constructor(
@@ -39,13 +29,12 @@ export class JCDecaux {
       urlApi += '/';
     }
 
-    this.urlApi = urlApi;
     this.contractName = contractName;
-    this.timeout = timeout;
+    this._request = new Request(apiKey, urlApi, timeout);
   }
 
-  getContracts(): Promise<Array<Contract>> {
-    return this._request('contracts', {});
+  getContracts(): Promise<Contract[]> {
+    return this._request.call<Contract[]>('contracts', {});
   }
 
   getStation(stationId: number, contractName: string = this.contractName): Promise<Station> {
@@ -53,38 +42,16 @@ export class JCDecaux {
     if (lang.isTringBlank(contractName)) throw new Error("contractName can't be null");
 
     let params = { contract: contractName };
-    return this._request(`stations/${stationId}`, params);
+    return this._request.call<Station>(`stations/${stationId}`, params);
   }
 
-  getStations(): Promise<Array<Station>> {
-    return this._request('stations', {});
+  getStations(): Promise<Station[]> {
+    return this._request.call<Station[]>('stations', {});
   }
 
-  getStationsByContract(contractName: string = this.contractName): Promise<Array<Station>> {
+  getStationsByContract(contractName: string = this.contractName): Promise<Station[]> {
     if (lang.isTringBlank(contractName)) throw new Error("contractName can't be null");
     let params = { contract: contractName };
-    return this._request(`stations`, params);
-  }
-
-  private _request(path: string = '', params: RequestParams = {}): Promise<Object> {
-    params.apiKey = this.apiKey;
-
-    return new Promise<superagent.Response>((resolve, reject) => {
-      let req = superagent
-        .get(`${this.urlApi}${path}`)
-        .query(params);
-
-        if (this.timeout) {
-          (req as any)._timeout = this.timeout;
-        }
-
-        req.end(function(err, res){
-           if (err) {
-             reject(err);
-           } else {
-             resolve(res.body);
-           }
-         });
-    });
+    return this._request.call<Station[]>(`stations`, params);
   }
 }

@@ -33,6 +33,16 @@ declare module "interfaces" {
         last_update: number;
     }
 }
+declare module "request" {
+    import { RequestParams } from "interfaces";
+    export class Request {
+        private apiKey;
+        private urlApi;
+        private timeout;
+        constructor(apiKey: string, urlApi: string, timeout: number);
+        call<T>(path?: string, params?: RequestParams): Promise<T>;
+    }
+}
 declare module "lang" {
     /**
      * Checks if value is classified as a String primitive or object.
@@ -47,31 +57,21 @@ declare module "lang" {
 }
 declare module "jcDecaux" {
     import { Contract, Station, JCDecauxParams } from "interfaces";
-    export const URL_API: string;
-    export const DEFAULT_TIMEOUT: number;
+    export const URL_API = "https://api.jcdecaux.com/vls/v1/";
+    export const DEFAULT_TIMEOUT = 3000;
     export class JCDecaux {
         apiKey: string;
-        /**
-         * Url of JCDecaux api
-         * @type {string}
-         */
-        urlApi: string;
         /**
          *  The default contract for all method
          * @type {string}
          */
         contractName: string;
-        /**
-         * The number of milliseconds to wait for a request to respond before aborting the request
-         * @type {number}
-         */
-        timeout: number;
+        private _request;
         constructor(apiKey: string, {contractName, urlApi, timeout}?: JCDecauxParams);
-        getContracts(): Promise<Array<Contract>>;
+        getContracts(): Promise<Contract[]>;
         getStation(stationId: number, contractName?: string): Promise<Station>;
-        getStations(): Promise<Array<Station>>;
-        getStationsByContract(contractName?: string): Promise<Array<Station>>;
-        private _request(path?, params?);
+        getStations(): Promise<Station[]>;
+        getStationsByContract(contractName?: string): Promise<Station[]>;
     }
 }
 declare module "index" {
