@@ -12,6 +12,7 @@ describe('getStations', function() {
     });
 
     it('#getStations()', function(){
+      this.timeout = 3000;
       return API.getStations().then(function(result) {
          result.should.to.be.an('array')
           .with.deep.property('[2]')
