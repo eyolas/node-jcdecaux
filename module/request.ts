@@ -18,7 +18,7 @@ export class Request {
             options.timeout = this.timeout;
         }
 
-        return new Promise<Object>((resolve, reject) => {
+        return new Promise<T>((resolve, reject) => {
             request
                 .get(`${this.urlApi}${path}`, options, (error: any, response: request.RequestResponse, body: any) => {
                     if (!error && response.statusCode == 200) {

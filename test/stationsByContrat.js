@@ -15,7 +15,7 @@ describe('getStationsByContract', function() {
       it("#getStationsByContract('lyon')", function(){
         return API.getStationsByContract('lyon').then(function(result) {
           result.should.to.be.an('array')
-            .with.deep.property('[2]')
+            .with.nested.property('[2]')
               .that.is.an('object');
         }).catch(function(err) {
           expect(err).to.be.null;
@@ -31,7 +31,7 @@ describe('getStationsByContract', function() {
       it('promise#getStationsByContract()', function(){
         return API.getStationsByContract().then(function(result) {
           result.should.to.be.an('array')
-            .with.deep.property('[2]')
+            .with.nested.property('[2]')
               .that.is.an('object');
         }).catch(function(err) {
           expect(err).to.be.null;

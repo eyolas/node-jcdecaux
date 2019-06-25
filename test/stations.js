@@ -15,7 +15,7 @@ describe('getStations', function() {
       this.timeout(3000);
       return API.getStations().then(function(result) {
          result.should.to.be.an('array')
-          .with.deep.property('[2]')
+          .with.nested.property('[2]')
             .that.is.an('object');
       }).catch(function(err) {
         expect(err).to.be.null;

@@ -9,7 +9,7 @@ export declare class JCDecaux {
      */
     contractName: string;
     private _request;
-    constructor(apiKey: string, {contractName, urlApi, timeout}?: JCDecauxParams);
+    constructor(apiKey: string, { contractName, urlApi, timeout }?: JCDecauxParams);
     getContracts(): Promise<Contract[]>;
     getStation(stationId: number, contractName?: string): Promise<Station>;
     getStations(): Promise<Station[]>;
