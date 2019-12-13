@@ -1,6 +1,6 @@
 {
   "name": "node-jcdecaux",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "nodejs client for JCDecaux Open Data",
   "keywords": [
     "jcdecaux"
