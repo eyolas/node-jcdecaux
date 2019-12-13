@@ -2,6 +2,7 @@
     "vsicons.presets.angular": false,
     "workbench.colorCustomizations": {
         "activityBar.background": "#27b4c9",
+        "activityBar.activeBorder": "#fae4f7",
         "activityBar.foreground": "#15202b",
         "activityBar.inactiveForeground": "#15202b99",
         "activityBarBadge.background": "#fae4f7",
@@ -13,5 +14,6 @@
         "statusBar.background": "#1f8e9e",
         "statusBarItem.hoverBackground": "#27b4c9",
         "statusBar.foreground": "#e7e7e7"
-    }
+    },
+    "peacock.color": "#1f8e9e"
 }

@@ -38,14 +38,14 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
-    "@types/request": "^2.48.1",
-    "@types/superagent": "^4.1.1",
-    "browserify": "^16.2.3",
+    "@types/request": "^2.48.3",
+    "@types/superagent": "^4.1.4",
+    "browserify": "^16.5.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "mocha": "^6.1.4",
-    "rimraf": "^2.6.3",
-    "superagent": "^5.1.0",
-    "typescript": "^3.5.2"
+    "mocha": "^6.2.2",
+    "rimraf": "^3.0.0",
+    "superagent": "^5.1.2",
+    "typescript": "^3.7.3"
   }
 }
